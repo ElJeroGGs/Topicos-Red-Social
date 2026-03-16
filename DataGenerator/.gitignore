@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-Input/*
+Input/*.csv
 !Input/.gitkeep
 .Python
 build/
