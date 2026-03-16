@@ -109,7 +109,7 @@ class CityProvider(BaseProvider):
     def city_id(self):
         """Devuelve solo el ID de ciudad para relaciones."""
         city = self.random_element(self.cities)
-        return city["id"]
+        return city["internal_id:(Ciudad)"]
     
     def all_cities(self):
         return self.cities
