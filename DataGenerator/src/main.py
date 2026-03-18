@@ -6,9 +6,16 @@ import os
 path = "Output"
 os.makedirs(path, exist_ok=True)
 
-full_path = os.path.join(os.path.abspath(path), "cities.csv")
-print(f"Los archivos se guardaran en: {full_path}")
+
+print(f"Los archivos se guardaran en: {os.path.abspath(path)}")
+
+def archivo_final(path, filename):
+    return os.path.join(os.path.abspath(path), filename)
 
 if __name__ == "__main__":
     # Escribir datos en CSV
-    write_csv(full_path, Ciudades.generar_ciudades(), fieldnames=["internal_id:(Ciudad)", "nombre", "estado", "pais"])
+    write_csv(
+        archivo_final(path, "cities.csv"), 
+        Ciudades.generar_ciudades(), 
+        fieldnames=["internal_id:(Ciudad)", "nombre", "estado", "pais"]
+    )
