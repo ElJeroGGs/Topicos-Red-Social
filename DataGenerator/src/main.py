@@ -26,13 +26,13 @@ if __name__ == "__main__":
     # Hashtags
     write_csv(
         archivo_final(path, "hashtags.csv"), 
-        Hashtags.generar_hashtags(150), 
+        Hashtags.generar_hashtags(500), 
         fieldnames=["id_hashtag:ID(Hashtag)", "nombre", "descripcion", "fecha_creacion"]
     )
     
     # Grupos
     write_csv(
         archivo_final(path, "groups.csv"), 
-        Grupos.generar_grupos(80), 
+        Grupos.generar_grupos(1000), 
         fieldnames=["id_grupo:ID(Grupo)", "nombre", "descripcion", "privacidad", "fecha_creacion", "id_creador", "id_categoria", "estatus"]
     )
