@@ -16,6 +16,10 @@ def generar_comentarios(n):
     for i in range(n):
         yield Comentarios.generar_comentario(i)
 
+def generar_usuarios(n):
+    for i in range(n):
+        yield Usuarios.generar_usuario(i)
+
 if __name__ == "__main__":
     # Escribir datos en CSV
     write_csv(
@@ -29,7 +33,6 @@ if __name__ == "__main__":
         generar_comentarios(4_000_000),
         fieldnames=["internal_id:(Comentario)", "contenido", "fecha_comentario", "status"]
     )
-    #write_csv(full_path + "/cities.csv", Ciudades.generar_ciudades(), fieldnames=["internal_id:(Ciudad)", "nombre", "estado", "pais"])
 
     # Hashtags
     write_csv(
@@ -48,7 +51,7 @@ if __name__ == "__main__":
     # Usuarios
     write_csv(
         archivo_final(path, "usuarios.csv"),
-        Usuarios.generar_n_usuarios(1000),
+        generar_usuarios(3_000_000),
         fieldnames=[
             "internal_id:ID(User)",
             "username",
