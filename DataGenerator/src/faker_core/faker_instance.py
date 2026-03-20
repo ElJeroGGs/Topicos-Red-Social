@@ -2,6 +2,7 @@ from faker import Faker
 
 # Providers personalizados
 from .providers.city_provider import CityProvider
+from .providers.comments_provider import CommentsProvider
 from .providers.hashtag_provider import HashtagProvider
 from .providers.grupos_provider import GroupProvider
 
@@ -16,5 +17,6 @@ for factory in fake._factories:
     # Si realizas un provider personalizado, recuerda agregarlo a esta instancia de Faker para que se pueda usar en todo el proyecto.
     # fake.add_provider(CustomProvider)
     factory.add_provider(CityProvider)
+    factory.add_provider(CommentsProvider)
     factory.add_provider(HashtagProvider)
     factory.add_provider(GroupProvider)
