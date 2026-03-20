@@ -1,5 +1,5 @@
 # Aqui iniciara la ejecucion del programa
-from generators import Ciudades, Comentarios
+from generators import Ciudades, Comentarios, Hashtags, Grupos
 from writer.csv_writer import write_csv
 import os
 
@@ -28,4 +28,19 @@ if __name__ == "__main__":
         archivo_final(path, "comments.csv"),
         generar_comentarios(4_000_000),
         fieldnames=["internal_id:(Comentario)", "contenido", "fecha_comentario", "status"]
+    )
+    #write_csv(full_path + "/cities.csv", Ciudades.generar_ciudades(), fieldnames=["internal_id:(Ciudad)", "nombre", "estado", "pais"])
+
+    # Hashtags
+    write_csv(
+        archivo_final(path, "hashtags.csv"), 
+        Hashtags.generar_hashtags(500), 
+        fieldnames=["id_hashtag:ID(Hashtag)", "nombre", "descripcion", "fecha_creacion"]
+    )
+    
+    # Grupos
+    write_csv(
+        archivo_final(path, "groups.csv"), 
+        Grupos.generar_grupos(1000), 
+        fieldnames=["id_grupo:ID(Grupo)", "nombre", "descripcion", "privacidad", "fecha_creacion", "id_creador", "id_categoria", "estatus"]
     )

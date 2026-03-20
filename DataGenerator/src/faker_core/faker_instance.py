@@ -3,6 +3,8 @@ from faker import Faker
 # Providers personalizados
 from .providers.city_provider import CityProvider
 from .providers.comments_provider import CommentsProvider
+from .providers.hashtag_provider import HashtagProvider
+from .providers.grupos_provider import GroupProvider
 
 # Configuración de Faker
 seed = 42
@@ -16,3 +18,5 @@ for factory in fake._factories:
     # fake.add_provider(CustomProvider)
     factory.add_provider(CityProvider)
     factory.add_provider(CommentsProvider)
+    factory.add_provider(HashtagProvider)
+    factory.add_provider(GroupProvider)
