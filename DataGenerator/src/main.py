@@ -1,5 +1,5 @@
 # Aqui iniciara la ejecucion del programa
-from generators import Ciudades, Comentarios, Hashtags, Grupos
+from generators import Ciudades, Comentarios, Hashtags, Grupos, Usuarios, Categorias
 from writer.csv_writer import write_csv
 import os
 
@@ -43,4 +43,34 @@ if __name__ == "__main__":
         archivo_final(path, "groups.csv"), 
         Grupos.generar_grupos(1000), 
         fieldnames=["id_grupo:ID(Grupo)", "nombre", "descripcion", "privacidad", "fecha_creacion", "id_creador", "id_categoria", "estatus"]
+    )
+
+    # Usuarios
+    write_csv(
+        archivo_final(path, "usuarios.csv"),
+        Usuarios.generar_n_usuarios(1000),
+        fieldnames=[
+            "internal_id:ID(User)",
+            "username",
+            "nombre",
+            "apellido",
+            "correo",
+            "password_hash",
+            "bio",
+            "fecha_registro",
+            "fecha_nacimiento",
+            "foto_perfil_url",
+            "status"
+        ]
+    )
+
+    # Categorias
+    write_csv(
+        archivo_final(path, "categorias.csv"),
+        Categorias.generar_n_categorias(100),
+        fieldnames=[
+            "internal_id:ID(Category)",
+            "nombre",
+            "descripcion"
+        ]
     )
