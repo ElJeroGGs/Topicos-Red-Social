@@ -1,8 +1,8 @@
 import random
 from datetime import datetime
 
-TOTAL_USUARIOS = 1_000_000
-TOTAL_GRUPOS = 1_000
+TOTAL_USUARIOS = 2_000_000
+TOTAL_GRUPOS = 2_000
 PORCENTAJE = 0.35
 
 usuarios = list(range(TOTAL_USUARIOS))

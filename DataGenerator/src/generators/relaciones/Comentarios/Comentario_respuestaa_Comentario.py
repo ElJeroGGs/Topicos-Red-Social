@@ -1,7 +1,7 @@
 import random
 from datetime import datetime
 
-TOTAL_COMENTARIOS = 4_000_000
+TOTAL_COMENTARIOS = 2_000_000
 PORCENTAJE = 0.4
 
 comentarios = list(range(TOTAL_COMENTARIOS))

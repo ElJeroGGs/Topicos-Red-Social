@@ -1,5 +1,5 @@
 # Aqui iniciara la ejecucion del programa
-from generators import Ciudades, Comentarios, Hashtags, Grupos, Usuarios, Categorias
+from generators import Ciudades, Comentarios, Hashtags, Grupos, Usuarios, Categorias, Publicaciones, Eventos
 from generators.relaciones import Usuarios as Usuarios_relaciones
 from generators.relaciones import Comentarios as Comentarios_relaciones
 from writer.csv_writer import write_csv
@@ -22,20 +22,60 @@ def generar_usuarios(n):
     for i in range(n):
         yield Usuarios.generar_usuario(i)
 
+def generar_publicaciones(n):
+    for i in range(n):
+        yield Publicaciones.gen_publicacion(i)
+
+def generar_eventos(n):
+    for i in range(n):
+        yield Eventos.gen_eventos(i)
+
 if __name__ == "__main__":
+
+    print("Generando publicaciones...")
+    write_csv(
+        archivo_final(path, "publicaciones.csv"),
+        generar_publicaciones(2_000_000),
+        fieldnames=[
+            "internal_id:ID(Publicacion)",
+            "contenido",
+            "tipo_contenido",
+            "visibilidad",
+            "fecha_publicacion",
+            "estatus"
+        ]
+    )
+
+    print("Generando eventos...")
+    write_csv(
+        archivo_final(path, "eventos.csv"),
+        generar_eventos(500),
+        fieldnames=[
+            "internal_id:ID(Evento)",
+            "titulo",
+            "descripcion",
+            "fecha_inicio",
+            "fecha_fin",
+            "modalidad",
+            "lugar",
+            "capacidad",
+            "estatus"
+        ]
+    )
+
     # Escribir datos en CSV
     print("Generando ciudades...")
     write_csv(
         archivo_final(path, "cities.csv"), 
         Ciudades.generar_ciudades(), 
-        fieldnames=["internal_id:(Ciudad)", "nombre", "estado", "pais"]
+        fieldnames=["internal_id:ID(Ciudad)", "nombre", "estado", "pais"]
     )
 
     print("Generando comentarios...")
     write_csv(
         archivo_final(path, "comments.csv"),
         generar_comentarios(2_000_000),
-        fieldnames=["internal_id:(Comentario)", "contenido", "fecha_comentario", "status"]
+        fieldnames=["internal_id:ID(Comentario)", "contenido", "fecha_comentario", "status"]
     )
 
     # Hashtags

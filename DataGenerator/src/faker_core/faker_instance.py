@@ -1,7 +1,5 @@
 from faker import Faker
-from faker_core.providers.publication_provider import PublicationProvider
 
-fake.add_provider(PublicationProvider)
 # Providers personalizados
 from .providers.city_provider import CityProvider
 from .providers.comments_provider import CommentsProvider
@@ -9,6 +7,8 @@ from .providers.hashtag_provider import HashtagProvider
 from .providers.grupos_provider import GroupProvider
 from .providers.user_provider import UserProvider
 from .providers.categoria_provider import CategoriaProvider
+from .providers.publication_provider import PublicationProvider
+from .providers.eventos_provider import EventosProvider
 
 # Configuración de Faker
 seed = 42
@@ -26,5 +26,7 @@ for factory in fake._factories:
     factory.add_provider(GroupProvider)
     factory.add_provider(UserProvider)
     factory.add_provider(CategoriaProvider)
+    factory.add_provider(PublicationProvider)
+    factory.add_provider(EventosProvider)
     
     
