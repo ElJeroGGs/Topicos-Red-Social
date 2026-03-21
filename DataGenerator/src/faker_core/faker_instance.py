@@ -1,5 +1,7 @@
 from faker import Faker
+from faker_core.providers.publication_provider import PublicationProvider
 
+fake.add_provider(PublicationProvider)
 # Providers personalizados
 from .providers.city_provider import CityProvider
 
