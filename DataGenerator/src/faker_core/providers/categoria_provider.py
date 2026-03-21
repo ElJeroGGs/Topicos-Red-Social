@@ -6,7 +6,7 @@ class CategoriaProvider(BaseProvider):
         fake = self.generator
 
         return {
-            "internal_id:ID(Category)": id,
+            "internal_id:ID(Categoria)": id,
             "nombre": fake.word(),
             "descripcion": fake.text(max_nb_chars=40)
         }

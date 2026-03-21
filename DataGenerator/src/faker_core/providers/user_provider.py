@@ -6,7 +6,7 @@ class UserProvider(BaseProvider):
         fake = self.generator
 
         return {
-            "internal_id:ID(User)": id,
+            "internal_id:ID(Usuario)": id,
             "username": fake.user_name(),
             "nombre": fake.first_name(),
             "apellido": fake.last_name(),
