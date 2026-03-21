@@ -94,7 +94,7 @@ class CityProvider(BaseProvider):
 
     cities = [
         {
-            "internal_id:(Ciudad)": i,
+            "internal_id:ID(Ciudad)": i,
             "nombre": city["city"],
             "estado": city["state"],
             "pais": city["country"]

@@ -16,7 +16,7 @@ class CommentsProvider(BaseProvider):
     def comment(self, id=None):
         gen = self.generator
         return {
-            "internal_id:(Comentario)": id,
+            "internal_id:ID(Comentario)": id,
             "contenido": gen.text(max_nb_chars=200).replace("\n", " "),
             "status": gen.random_element(self.comment_statuses)
         }

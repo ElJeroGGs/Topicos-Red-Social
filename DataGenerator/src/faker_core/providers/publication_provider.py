@@ -9,7 +9,7 @@ class PublicationProvider(BaseProvider):
         contenido = self.generator.text(max_nb_chars=200).replace("\n", " ")
 
         return {
-            "internal_id:(Publicacion)": id,
+            "internal_id:ID(Publicacion)": id,
             "contenido": contenido,
             "tipo_contenido": self.random_element(self.TIPOS_CONTENIDO),
             "visibilidad": self.random_element(self.VISIBILIDADES),
