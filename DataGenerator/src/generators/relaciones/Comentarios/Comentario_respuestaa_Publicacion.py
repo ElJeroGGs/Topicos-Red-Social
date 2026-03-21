@@ -1,8 +1,10 @@
 import random
 from datetime import datetime
+from generators.Base_data import Data
 
-TOTAL_COMENTARIOS = 2_000_000
-TOTAL_PUBLICACIONES = 2_000_000
+data = Data()
+TOTAL_COMENTARIOS = data.TOTAL_COMENTARIOS
+TOTAL_PUBLICACIONES = data.TOTAL_PUBLICACIONES
 PORCENTAJE_PUBLICACIONES_CON_COMENTARIOS = 0.65  # 65% de publicaciones reciben comentarios
 
 publicaciones = list(range(TOTAL_PUBLICACIONES))

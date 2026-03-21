@@ -1,7 +1,9 @@
 import random
+from generators.Base_data import Data
 
-TOTAL_PUBLICACIONES = 2_000_000
-TOTAL_CIUDADES = 82
+data = Data()
+TOTAL_PUBLICACIONES = data.TOTAL_PUBLICACIONES
+TOTAL_CIUDADES = data.TOTAL_CIUDADES
 PORCENTAJE_CON_CIUDAD = 0.4  # 40% de publicaciones tienen ubicación
 
 # Seleccionar publicaciones con ciudad

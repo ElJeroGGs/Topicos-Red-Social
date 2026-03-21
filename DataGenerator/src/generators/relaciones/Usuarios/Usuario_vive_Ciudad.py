@@ -1,7 +1,9 @@
 import random
+from generators.Base_data import Data
 
-TOTAL_USUARIOS = 2_000_000
-TOTAL_CIUDADES = 82
+data = Data()
+TOTAL_USUARIOS = data.TOTAL_USUARIOS
+TOTAL_CIUDADES = data.TOTAL_CIUDADES
 PORCENTAJE = 0.5
 
 usuarios = list(range(TOTAL_USUARIOS))

@@ -1,7 +1,9 @@
 import random
+from generators.Base_data import Data
 
-TOTAL_EVENTOS = 500
-TOTAL_CIUDADES = 82
+data = Data()
+TOTAL_EVENTOS = data.TOTAL_EVENTOS
+TOTAL_CIUDADES = data.TOTAL_CIUDADES
 
 def generar_evento_ocurre():
     for evento in range(TOTAL_EVENTOS):

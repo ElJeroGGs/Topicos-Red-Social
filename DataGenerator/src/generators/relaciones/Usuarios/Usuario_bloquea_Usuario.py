@@ -1,7 +1,9 @@
 import random
 from datetime import datetime, timedelta
+from generators.Base_data import Data
 
-TOTAL_USUARIOS = 2_000_000
+data = Data()
+TOTAL_USUARIOS = data.TOTAL_USUARIOS
 PORCENTAJE = 0.3
 
 usuarios = list(range(TOTAL_USUARIOS))

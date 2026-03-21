@@ -5,11 +5,13 @@ from generators.relaciones import Comentarios as Comentarios_relaciones
 from generators.relaciones import Eventos as Eventos_relaciones
 from generators.relaciones import Publicaciones as Publicaciones_relaciones
 from writer.csv_writer import write_csv
+from generators.Base_data import Data
 import os
 import time
 
 path = "Output"
 os.makedirs(path, exist_ok=True)
+data = Data()
 
 
 print(f"Los archivos se guardaran en: {os.path.abspath(path)}")
@@ -40,7 +42,7 @@ if __name__ == "__main__":
     print("Generando publicaciones...")
     write_csv(
         archivo_final(path, "publicaciones.csv"),
-        generar_publicaciones(2_000_000),
+        generar_publicaciones(data.TOTAL_PUBLICACIONES),
         fieldnames=[
             "internal_id:ID(Publicacion)",
             "contenido",
@@ -53,7 +55,7 @@ if __name__ == "__main__":
     print("Generando eventos...")
     write_csv(
         archivo_final(path, "eventos.csv"),
-        generar_eventos(500),
+        generar_eventos(data.TOTAL_EVENTOS),
         fieldnames=[
             "internal_id:ID(Evento)",
             "titulo",
@@ -78,7 +80,7 @@ if __name__ == "__main__":
     print("Generando comentarios...")
     write_csv(
         archivo_final(path, "comments.csv"),
-        generar_comentarios(2_000_000),
+        generar_comentarios(data.TOTAL_COMENTARIOS),
         fieldnames=["internal_id:ID(Comentario)", "contenido", "status"]
     )
 
@@ -86,14 +88,14 @@ if __name__ == "__main__":
     print("Generando hashtags...")
     write_csv(
         archivo_final(path, "hashtags.csv"), 
-        Hashtags.generar_hashtags(500), 
+        Hashtags.generar_hashtags(data.TOTAL_HASHTAGS), 
         fieldnames=["id_hashtag:ID(Hashtag)", "nombre", "descripcion", "fecha_creacion"]
     )
     
     # Grupos
     write_csv(
         archivo_final(path, "groups.csv"), 
-        Grupos.generar_grupos(1000), 
+        Grupos.generar_grupos(data.TOTAL_GRUPOS), 
         fieldnames=["id_grupo:ID(Grupo)", "nombre", "descripcion", "privacidad", "fecha_creacion", "id_creador", "id_categoria", "estatus"]
     )
 
@@ -101,7 +103,7 @@ if __name__ == "__main__":
     print("Generando usuarios...")
     write_csv(
         archivo_final(path, "usuarios.csv"),
-        generar_usuarios(2_000_000),
+        generar_usuarios(data.TOTAL_USUARIOS),
         fieldnames=[
             "internal_id:ID(Usuario)",
             "username",
@@ -121,7 +123,7 @@ if __name__ == "__main__":
     print("Generando categorias...")
     write_csv(
         archivo_final(path, "categorias.csv"),
-        Categorias.generar_n_categorias(100),
+        Categorias.generar_n_categorias(data.TOTAL_CATEGORIAS),
         fieldnames=[
             "internal_id:ID(Categoria)",
             "nombre",

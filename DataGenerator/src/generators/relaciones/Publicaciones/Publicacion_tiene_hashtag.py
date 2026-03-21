@@ -1,7 +1,9 @@
 import random
+from generators.Base_data import Data
 
-TOTAL_PUBLICACIONES = 2_000_000
-TOTAL_HASHTAGS = 500
+data = Data()
+TOTAL_PUBLICACIONES = data.TOTAL_PUBLICACIONES
+TOTAL_HASHTAGS = data.TOTAL_HASHTAGS
 PORCENTAJE_CON_HASHTAG = 0.5  # 50% de publicaciones tienen hashtag
 
 # Seleccionamos publicaciones que tendrán hashtag

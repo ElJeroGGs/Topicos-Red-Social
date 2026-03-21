@@ -1,7 +1,9 @@
 import random
+from generators.Base_data import Data
 
-TOTAL_USUARIOS = 2_000_000
-TOTAL_EVENTOS = 500
+data = Data()
+TOTAL_USUARIOS = data.TOTAL_USUARIOS
+TOTAL_EVENTOS = data.TOTAL_EVENTOS
 PORCENTAJE_ACTIVOS = 0.7
 MAX_ORGANIZADORES = 50
 

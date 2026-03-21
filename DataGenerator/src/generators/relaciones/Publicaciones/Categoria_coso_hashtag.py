@@ -1,7 +1,9 @@
 import random
+from generators.Base_data import Data
 
-TOTAL_HASHTAGS = 500
-TOTAL_CATEGORIAS = 100
+data = Data()
+TOTAL_HASHTAGS = data.TOTAL_HASHTAGS
+TOTAL_CATEGORIAS = data.TOTAL_CATEGORIAS
 
 def generar_hashtag_categoria():
     for hashtag in range(1, TOTAL_HASHTAGS + 1):

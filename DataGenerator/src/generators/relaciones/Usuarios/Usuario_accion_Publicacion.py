@@ -1,7 +1,9 @@
 import random
+from generators.Base_data import Data
+data = Data()
 
-TOTAL_USUARIOS = 2_000_000
-TOTAL_PUBLICACIONES = 2_000_000
+TOTAL_USUARIOS = data.TOTAL_USUARIOS
+TOTAL_PUBLICACIONES = data.TOTAL_PUBLICACIONES
 PORCENTAJE_ACTIVOS = 0.7
 
 usuarios = list(range(TOTAL_USUARIOS))
