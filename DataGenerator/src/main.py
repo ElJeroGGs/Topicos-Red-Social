@@ -2,8 +2,11 @@
 from generators import Ciudades, Comentarios, Hashtags, Grupos, Usuarios, Categorias, Publicaciones, Eventos
 from generators.relaciones import Usuarios as Usuarios_relaciones
 from generators.relaciones import Comentarios as Comentarios_relaciones
+from generators.relaciones import Eventos as Eventos_relaciones
+from generators.relaciones import Publicaciones as Publicaciones_relaciones
 from writer.csv_writer import write_csv
 import os
+import time
 
 path = "Output"
 os.makedirs(path, exist_ok=True)
@@ -31,6 +34,8 @@ def generar_eventos(n):
         yield Eventos.gen_eventos(i)
 
 if __name__ == "__main__":
+    inicio = time.time()
+    print("Iniciando generación de datos a las ", time.ctime(inicio))
 
     print("Generando publicaciones...")
     write_csv(
@@ -41,7 +46,6 @@ if __name__ == "__main__":
             "contenido",
             "tipo_contenido",
             "visibilidad",
-            "fecha_publicacion",
             "estatus"
         ]
     )
@@ -75,7 +79,7 @@ if __name__ == "__main__":
     write_csv(
         archivo_final(path, "comments.csv"),
         generar_comentarios(2_000_000),
-        fieldnames=["internal_id:ID(Comentario)", "contenido", "fecha_comentario", "status"]
+        fieldnames=["internal_id:ID(Comentario)", "contenido", "status"]
     )
 
     # Hashtags
@@ -212,3 +216,118 @@ if __name__ == "__main__":
             "fecha_relacion"
         ]
     )
+
+    print("Generando Usuario publica Publicacion...")
+    write_csv(
+        archivo_final(path, "usuario_publica_publicacion.csv"),
+        Usuarios_relaciones.Usuario_publica_Publicacion.generar_publica(),
+        fieldnames=[
+            ":START_ID(Usuario)",
+            ":END_ID(Publicacion)",
+            "fecha_relacion"
+        ]
+    )
+    
+    print("Generando Usuario reacciona Publicacion...")
+    write_csv(
+        archivo_final(path, "usuario_reacciona_publicacion.csv"),
+        Usuarios_relaciones.Usuario_accion_Publicacion.generar_relaciones_accion(tipo="reacciona"),
+        fieldnames=[":START_ID(Usuario)", ":END_ID(Publicacion)", "tipo"]
+    )
+
+    print("Generando Usuario comparte Publicacion...")
+    write_csv(
+        archivo_final(path, 'usuario_comparte_publicacion.csv'),
+        Usuarios_relaciones.Usuario_accion_Publicacion.generar_relaciones_accion(tipo="comparte"),
+        fieldnames=[":START_ID(Usuario)", ":END_ID(Publicacion)", "tipo"]
+    )
+
+    print("Generando Usuario guarda Publicacion...")
+    write_csv(
+        archivo_final(path, 'usuario_guarda_publicacion.csv'),
+        Usuarios_relaciones.Usuario_accion_Publicacion.generar_relaciones_accion(tipo="guarda"),
+        fieldnames=[":START_ID(Usuario)", ":END_ID(Publicacion)", "tipo"]
+    )
+
+    print("Generando Usuario guarda Evento...")
+    write_csv(
+        archivo_final(path, "guarda_evento.csv"),
+        Usuarios_relaciones.Usuario_accion_Evento.generar_relaciones_evento(tipo="guarda"),
+        fieldnames=[":START_ID(Usuario)", ":END_ID(Evento)", "tipo"]
+    )
+
+    print("Generando Usuario asiste Evento...")
+    write_csv(
+        archivo_final(path, "asiste_evento.csv"),
+        Usuarios_relaciones.Usuario_accion_Evento.generar_relaciones_evento(tipo="asiste"),
+        fieldnames=[":START_ID(Usuario)", ":END_ID(Evento)", "tipo"]
+    )
+
+    print("Generando Usuario organiza Evento...")
+    write_csv(
+        archivo_final(path, "organiza_evento.csv"),
+        Usuarios_relaciones.Usuario_accion_Evento.generar_organizadores(),
+        fieldnames=[":START_ID(Usuario)", ":END_ID(Evento)", "tipo"]
+    )
+
+    print("Generando Evento ocurre Ciudad...")
+    write_csv(
+        archivo_final(path, "evento_ocurre_ciudad.csv"),
+        Eventos_relaciones.Evento_ocurre_Ciudad.generar_evento_ocurre(),
+        fieldnames=[":START_ID(Evento)", ":END_ID(Ciudad)"]
+    )
+
+    print("Generando Comentario responde a Publicacion...")
+    write_csv(
+        archivo_final(path, "comentario_respuesta_publicacion.csv"),
+        Comentarios_relaciones.Comentario_respuestaa_Publicacion.generar_comentario_a_publicacion(),
+        fieldnames=[
+            ":START_ID(Comentario)",
+            ":END_ID(Publicacion)",
+            "fecha_relacion"
+        ]
+    )
+
+    print("Generando Publicacion ocurre Ciudad...")
+    write_csv(
+        archivo_final(path, "publicacion_ocurre_ciudad.csv"),
+        Publicaciones_relaciones.Publicacion_ocurren_ciudad.generar_publicacion_en_ciudad(),
+        fieldnames=[
+            ":START_ID(Publicacion)",
+            ":END_ID(Ciudad)"
+        ]
+    )
+
+    print("Generando Publicacion tiene Hashtag...")
+    write_csv(
+        archivo_final(path, "publicacion_tiene_hashtag.csv"),
+        Publicaciones_relaciones.Publicacion_tiene_hashtag.generar_publicacion_hashtag(),
+        fieldnames=[
+            ":START_ID(Publicacion)",
+            ":END_ID(Hashtag)"
+        ]
+    )
+
+    print("Generando Hashtag pertenece a Categoria...")
+    write_csv(
+        archivo_final(path, "hashtag_pertenece_categoria.csv"),
+        Publicaciones_relaciones.Categoria_coso_hashtag.generar_hashtag_categoria(),
+        fieldnames=[
+            ":START_ID(Hashtag)",
+            ":END_ID(Categoria)"
+        ]
+    )
+
+    print("Generando Subcategoria...")
+    write_csv(
+        archivo_final(path, "subcategoria.csv"),
+        Publicaciones_relaciones.Categoria_coso_hashtag.generar_subcategoria(),
+        fieldnames=[
+            ":START_ID(Categoria)",
+            ":END_ID(Categoria)"
+        ]
+    )
+
+    fin = time.time()
+    print("Generación de datos finalizada a las ", time.ctime(fin))
+    print(f"Tiempo total de generación: {fin - inicio:.2f} segundos")

@@ -18,6 +18,5 @@ class CommentsProvider(BaseProvider):
         return {
             "internal_id:(Comentario)": id,
             "contenido": gen.text(max_nb_chars=200).replace("\n", " "),
-            "fecha_comentario": gen.date_time_this_decade().isoformat(),
             "status": gen.random_element(self.comment_statuses)
         }

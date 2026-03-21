@@ -5,3 +5,6 @@ from .Usuario_reacciona_Comentario import *
 from .Usuario_sigue_Usuario import *
 from .Usuario_bloquea_Usuario import *
 from .Usuario_vive_Ciudad import *
+from .Usuario_publica_Publicacion import *
+from .Usuario_accion_Publicacion import *
+from .Usuario_accion_Evento import *
