@@ -1,16 +1,18 @@
 from faker.providers import BaseProvider
-import random
 
 class PublicationProvider(BaseProvider):
+    TIPOS_CONTENIDO = ["texto", "imagen", "video"]
+    VISIBILIDADES = ["publico", "privado"]
+    ESTATUS = ["activo", "eliminado"]
 
-    def publication(self, id_publicacion, usuarios_ids, categorias_ids):
+    def publication(self, id):
+        contenido = self.generator.text(max_nb_chars=200).replace("\n", " ")
+
         return {
-            "internal_id:(Publicacion)": id_publicacion,
-            "id_usuario": random.choice(usuarios_ids),
-            "id_categoria": random.choice(categorias_ids),
-            "contenido": self.generator.text(max_nb_chars=200),
-            "tipo_contenido": random.choice(["texto", "imagen", "video"]),
-            "visibilidad": random.choice(["publico", "privado"]),
-            "ubicacion_texto": self.generator.city(),
-            "estatus": random.choice(["activo", "eliminado"])
+            "internal_id:(Publicacion)": id,
+            "contenido": contenido,
+            "tipo_contenido": self.random_element(self.TIPOS_CONTENIDO),
+            "visibilidad": self.random_element(self.VISIBILIDADES),
+            "fecha_publicacion": self.generator.date_time(),
+            "estatus": self.random_element(self.ESTATUS),
         }
