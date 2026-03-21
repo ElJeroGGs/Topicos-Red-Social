@@ -13,6 +13,5 @@ class PublicationProvider(BaseProvider):
             "contenido": contenido,
             "tipo_contenido": self.random_element(self.TIPOS_CONTENIDO),
             "visibilidad": self.random_element(self.VISIBILIDADES),
-            "fecha_publicacion": self.generator.date_time(),
             "estatus": self.random_element(self.ESTATUS),
         }
